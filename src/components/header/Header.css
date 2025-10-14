@@ -1,0 +1,91 @@
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #adebb3;
+  background-color: #fff;
+}
+
+/* Logo */
+.header .logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Profile placeholder */
+.header .profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ccc; /* grey placeholder */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* stack logo and account */
+    align-items: flex-start;
+    padding: 8px 12px;
+    height: 50px;
+  }
+
+  .account {
+    display: none; /* hide fullname to save space */
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .header .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header .profile {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 1190px) {
+  .header {
+    flex-direction: column; /* stack logo and account */
+    align-items: flex-start;
+    padding: 8px 12px;
+    height: 50px;
+  }
+
+  .account {
+    display: none; /* hide fullname to save space */
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .header .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header .profile {
+    width: 40px;
+    height: 40px;
+  }
+}

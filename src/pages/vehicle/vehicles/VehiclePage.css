@@ -1,0 +1,256 @@
+/* Table */
+.table-container {
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.table tr:hover {
+  background: #f9f9f9;
+}
+
+.link {
+  color: #2a73d9;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.label {
+  background: #9dd89d;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.label-red {
+  background: #f44336;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* Header */
+.vehicle-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 12px 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.vehicle-table-header-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.vehicle-table-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #adebb3;
+  cursor: pointer;
+}
+
+.btn {
+  padding: 6px 12px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.edit-btn {
+  background-color: #4caf50;
+  color: white;
+  margin-top: 15px;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  margin-top: 15px;
+}
+
+.cancel-btn {
+  background-color: grey;
+  color: white;
+  margin-top: 10px;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  .table,
+  .table thead,
+  .table tbody,
+  .table th,
+  .table td,
+  .table tr {
+    display: block;
+    width: 100%;
+  }
+
+  /* Hide table headers */
+  .table thead {
+    display: none;
+  }
+
+  .table tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 12px;
+    background: #fff;
+  }
+
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    flex: 1;
+    text-align: left;
+    padding-right: 10px;
+    color: #333;
+  }
+
+  .table td:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 1190px) {
+  .table,
+  .table thead,
+  .table tbody,
+  .table th,
+  .table td,
+  .table tr {
+    display: block;
+    width: 100%;
+  }
+
+  /* Hide table headers */
+  .table thead {
+    display: none;
+  }
+
+  .table tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 12px;
+    background: #fff;
+  }
+
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    flex: 1;
+    text-align: left;
+    padding-right: 10px;
+    color: #333;
+  }
+
+  .table td:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Responsive Header */
+@media (max-width: 768px) {
+  .vehicle-table-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .vehicle-table-header-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .search {
+    width: 100%; /* Full width search bar */
+  }
+}
+
+@media (max-width: 1190px) {
+  .vehicle-table-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .vehicle-table-header-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .search {
+    width: 100%; /* Full width search bar */
+  }
+}
+
+/* Buttons on small devices */
+@media (max-width: 500px) {
+  .btn {
+    width: 100%;
+    margin: 4px 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 990px) {
+  .btn {
+    width: 100%;
+    margin: 4px 0;
+    text-align: center;
+  }
+}

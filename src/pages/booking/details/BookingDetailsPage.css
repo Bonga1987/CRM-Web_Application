@@ -1,0 +1,116 @@
+/* Section boxes */
+.section-column {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-row {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+/* Row for two-column layout */
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Vehicle section */
+.vehicle-section {
+  display: flex;
+  gap: 20px;
+}
+
+.car-image {
+  width: 160px;
+  height: 90px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+.vehicle-info {
+  flex: 1;
+}
+
+/* Customer section */
+.customer-section {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Customer info column */
+.customer-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.customer-info p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.damage-check {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.damage-check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.btn.cancel {
+  background: #fff;
+  border: 1px solid #333;
+}
+
+.btn.confirm {
+  background: #b4e0b4;
+}

@@ -1,0 +1,7 @@
+services:
+  carrentalmanagementsystem:
+    build: ./carrentalmanagementsystem
+    container_name: carrentalmanagementsystem
+    restart: always
+    ports:
+      - "8080:80"
