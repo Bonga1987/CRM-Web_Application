@@ -6,7 +6,7 @@ import { ManagerContext } from "../../context/ManagerContext";
 
 export default function InvoicePage() {
   const [invoices, setInvoices] = useState([]);
-  const { BASE_URL } = useContext(ManagerContext);
+  const { BASE_URL, formatedDate } = useContext(ManagerContext);
   const url = `${BASE_URL}/bookings`;
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredInvoiceData, setFilteredInvoiceData] = useState([]);
@@ -43,6 +43,7 @@ export default function InvoicePage() {
     "Amount",
     "Late fees",
     "Damages",
+    "Generated Date",
     "Status",
   ];
 
@@ -56,6 +57,7 @@ export default function InvoicePage() {
     Amount: invoice.amount,
     "Late fees": invoice.latefees,
     Damages: invoice.damages,
+    "Generated Date": formatedDate(invoice.generateddate),
     Status:
       invoice.paymentstatus === "Unpaid" ? (
         <span className="label-red">{invoice.paymentstatus}</span>

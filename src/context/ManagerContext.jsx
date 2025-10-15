@@ -49,6 +49,17 @@ export const ManagerProvider = ({ children }) => {
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
 
+  const formatedDateNoHours = (date) => {
+    if (!date) return "";
+
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  };
+
   // check login state from localstorage on app start
   useEffect(() => {
     const loadLoginState = () => {
@@ -98,6 +109,7 @@ export const ManagerProvider = ({ children }) => {
         setIsOpen,
         BASE_URL,
         BASE_URL_UPLOAD,
+        formatedDateNoHours,
       }}
     >
       {children}

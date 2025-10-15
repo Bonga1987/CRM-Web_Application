@@ -41,6 +41,9 @@ export default function Sidebar() {
                 <Link to="/Maintenance" className="menu-item">
                   Maintenance
                 </Link>
+                <Link to="/DamageReport" className="menu-item">
+                  DamageReport
+                </Link>
                 <h2 className="menu-section">Payments</h2>
                 <Link className="menu-item" to="/Invoice">
                   Transactions
@@ -53,6 +56,9 @@ export default function Sidebar() {
                 </Link>
                 <Link to="/Maintenance" className="menu-item">
                   Maintenance
+                </Link>
+                <Link to="/DamageReport" className="menu-item">
+                  DamageReport
                 </Link>
               </>
             ) : (

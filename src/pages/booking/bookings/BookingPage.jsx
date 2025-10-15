@@ -11,7 +11,7 @@ export default function BookingsPage() {
   const [showModal, setShowModal] = useState(false);
   const [bookings, setBookings] = useState([]);
   const [selectedBooking, setSelectedBooking] = useState({});
-  const { formatedDate, BASE_URL, notifySuccess, notifyError } =
+  const { formatedDateNoHours, BASE_URL, notifySuccess, notifyError } =
     useContext(ManagerContext);
   const [filterTerm, setFilterTerm] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -82,9 +82,9 @@ export default function BookingsPage() {
       </span>
     ),
     Customer: <span className="link">{booking.fullname}</span>,
-    "Pickup date": formatedDate(booking.pickupdate),
-    "Dropoff date": formatedDate(booking.dropoffdate),
-    "Actual return date": formatedDate(booking.actualreturndate),
+    "Pickup date": formatedDateNoHours(booking.pickupdate),
+    "Dropoff date": formatedDateNoHours(booking.dropoffdate),
+    "Actual return date": formatedDateNoHours(booking.actualreturndate),
     "Pickup location": booking.pickuplocation,
     "Dropoff location": booking.dropofflocation,
     Status:

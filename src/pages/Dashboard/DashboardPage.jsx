@@ -17,9 +17,11 @@ import {
 import "./DashboardPage.css";
 import axios from "axios";
 import { ManagerContext } from "../../context/ManagerContext";
+import SalesComparisonChart from "../../components/salesComparisonCart/SalesComparisonChart";
+import FinancialCharts from "../../components/financial/FinancialCharts";
 
 const COLORS = ["#4CAF50", "#2196F3", "#FFC107"];
-const overdueCOLORS = ["#4caf50", "#f44336"]; // green, red
+const overdueCOLORS = ["#4caf50", "#f44336", "#FFC107", "#9ca3af"]; // green, red
 const categoryCOLORS = [
   "#9C27B0",
   "#FF9800",
@@ -57,6 +59,8 @@ const DashboardPage = () => {
   const [overdueReturns, setOverdueReturns] = useState([
     { name: "On Time", value: 0 },
     { name: "Overdue", value: 0 },
+    { name: "Cancelled", value: 0 },
+    { name: "Other", value: 0 },
   ]);
   const [rentalByMonths, setRentalByMonths] = useState([]);
   const monthNames = [
@@ -75,6 +79,7 @@ const DashboardPage = () => {
   ];
   const [selectedYear, setSelectedYear] = useState(2025);
   const { BASE_URL } = useContext(ManagerContext);
+  const [loading, setLoading] = useState(true); // loading state
 
   const url = `${BASE_URL}`;
 
@@ -182,6 +187,12 @@ const DashboardPage = () => {
           const onTimeCount = response.data.filter(
             (b) => b.return_status === "On Time"
           ).length;
+          const cancelledCount = response.data.filter(
+            (b) => b.return_status === "Cancelled"
+          ).length;
+          const otherCount = response.data.filter(
+            (b) => b.return_status === "Other"
+          ).length;
 
           setOverdueReturns((prev) => {
             const updated = [...prev]; // copy array
@@ -190,7 +201,17 @@ const DashboardPage = () => {
           });
           setOverdueReturns((prev) => {
             const updated = [...prev]; // copy array
-            updated[1] = { ...updated[1], value: overdueCount }; // change first object’s value
+            updated[1] = { ...updated[1], value: overdueCount }; // change second object’s value
+            return updated;
+          });
+          setOverdueReturns((prev) => {
+            const updated = [...prev]; // copy array
+            updated[2] = { ...updated[2], value: cancelledCount }; // change third object’s value
+            return updated;
+          });
+          setOverdueReturns((prev) => {
+            const updated = [...prev]; // copy array
+            updated[3] = { ...updated[3], value: otherCount }; // change fourth object’s value
             return updated;
           });
         }
@@ -230,22 +251,27 @@ const DashboardPage = () => {
 
   useEffect(() => {
     const getReports = () => {
-      //get rented
-      getRentedVehicles();
-      //get available
-      getAvailableVehicles();
-      //get mainained
-      getMaintainedVehicles();
-      //frequentcustomers
-      getFrequentCustomers();
-      //most rented vehicles
-      getMostRentedVehicles();
-      //popular categories
-      getPopularCategories();
-      //get overdue returns
-      getOverdueReturns();
-      //get rentals by month
-      getRentalByMonths();
+      try {
+        //get rented
+        getRentedVehicles();
+        //get available
+        getAvailableVehicles();
+        //get mainained
+        getMaintainedVehicles();
+        //frequentcustomers
+        getFrequentCustomers();
+        //most rented vehicles
+        getMostRentedVehicles();
+        //popular categories
+        getPopularCategories();
+        //get overdue returns
+        getOverdueReturns();
+        //get rentals by month
+        getRentalByMonths();
+      } catch (error) {
+      } finally {
+        setLoading(false); // stop loading once fetch is complete
+      }
     };
 
     getReports();
@@ -279,9 +305,18 @@ const DashboardPage = () => {
     availableVehicles.map((vehicle) => {
       totalAvailableVehicles += parseInt(vehicle.active_vehicles);
     });
+
+    let totalRentedVehicles = 0;
+    rentedVehicles.map((vehicle) => {
+      totalRentedVehicles += parseInt(vehicle.rented_vehicles);
+    });
+
     setFleetData((prev) => {
       const updated = [...prev]; // copy array
-      updated[0] = { ...updated[0], value: totalAvailableVehicles }; // change first object’s value
+      updated[0] = {
+        ...updated[0],
+        value: totalAvailableVehicles - totalRentedVehicles,
+      }; // change first object’s value
       return updated;
     });
   }, [availableVehicles]);
@@ -291,6 +326,7 @@ const DashboardPage = () => {
     rentedVehicles.map((vehicle) => {
       totalRentedVehicles += parseInt(vehicle.rented_vehicles);
     });
+
     setFleetData((prev) => {
       const updated = [...prev]; // copy array
       updated[1] = { ...updated[1], value: totalRentedVehicles }; // change first object’s value
@@ -352,8 +388,32 @@ const DashboardPage = () => {
     setFleetDataBar(merged);
   }, [availableVehicles, rentedVehicles, maintainedVehicles]);
 
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <div className="dashboard-container">
+      {/* Fleet Reports */}
+      <h2>Financial</h2>
+      <div style={{ display: "grid", gap: 40 }} className="chart-container">
+        <FinancialCharts />
+
+        <div style={{ flex: 1, height: 300 }}>
+          <SalesComparisonChart />
+        </div>
+      </div>
+
       {/* Fleet Reports */}
       <h2>Fleet Reports</h2>
       <div style={{ display: "flex", gap: 40 }} className="chart-container">
