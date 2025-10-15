@@ -13,6 +13,7 @@ import { ManagerContext } from "./context/ManagerContext";
 import MaintenancePage from "./pages/maintenance/MaintenancePage";
 import InvoicePage from "./pages/invoice/InvoicePage";
 import { ToastContainer } from "react-toastify";
+import DamageReportPage from "./pages/damageReport/DamageReportPage";
 
 export default function App() {
   const { isLoggedIn, setIsOpen, isOpen, staff } = useContext(ManagerContext);
@@ -48,6 +49,7 @@ export default function App() {
                   element={<BookingDetailsPage />}
                 />
                 <Route path="/Maintenance" element={<MaintenancePage />} />
+                <Route path="/DamageReport" element={<DamageReportPage />} />
                 <Route path="/Invoice" element={<InvoicePage />} />
               </Routes>
               <ToastContainer />

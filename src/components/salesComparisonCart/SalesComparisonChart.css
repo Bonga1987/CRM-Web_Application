@@ -1,0 +1,65 @@
+.sales-chart-container {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 48rem; /* ~3xl */
+  box-sizing: border-box;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.chart-title h2 {
+  color: #374151;
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+.total-sales {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0.25rem 0;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.chart-stats {
+  text-align: right;
+}
+
+.increase {
+  color: #16a34a; /* green */
+  font-weight: 500;
+  margin: 0;
+}
+
+.since-last {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.view-report {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #2563eb; /* blue */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.view-report:hover {
+  text-decoration: underline;
+}

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ManagerContext } from "../../context/ManagerContext";
 
 export default function BookingView({ title, bookingDetails }) {
-  const { formatedDate } = useContext(ManagerContext);
+  const { formatedDateNoHours, formatedDate } = useContext(ManagerContext);
 
   const replaceWithLocalhost = (url) => {
     if (!url) return null;
@@ -16,10 +16,11 @@ export default function BookingView({ title, bookingDetails }) {
       <div className="section-column">
         <div className="row">
           <span>
-            <b>Pickup date:</b> {formatedDate(bookingDetails.pickupdate)}
+            <b>Pickup date:</b> {formatedDateNoHours(bookingDetails.pickupdate)}
           </span>
           <span>
-            <b>Dropoff date:</b> {formatedDate(bookingDetails.dropoffdate)}
+            <b>Dropoff date:</b>{" "}
+            {formatedDateNoHours(bookingDetails.dropoffdate)}
           </span>
         </div>
         {/* <div className="row">
@@ -43,7 +44,7 @@ export default function BookingView({ title, bookingDetails }) {
         <div className="row">
           <span>
             <b>Actual return date:</b>{" "}
-            {formatedDate(bookingDetails.actualreturndate)}
+            {formatedDateNoHours(bookingDetails.actualreturndate)}
           </span>
           <span style={{ color: "blue" }}>
             <b style={{ color: "black" }}>Status:</b> {bookingDetails.status}

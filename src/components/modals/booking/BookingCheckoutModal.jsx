@@ -2,6 +2,7 @@ import { useContext } from "react";
 import BookingView from "../../booking/BookingView";
 import axios from "axios";
 import { ManagerContext } from "../../../context/ManagerContext";
+import dayjs from "dayjs";
 
 export default function BookingCheckoutModal({
   show,
@@ -15,6 +16,18 @@ export default function BookingCheckoutModal({
   const url = `${BASE_URL}/bookings`;
 
   const handleCheckOut = async () => {
+    console.log("test");
+    const currentDate = new Date();
+    const pickupDate = new Date(bookingDetails.pickupdate);
+    const dropoffDate = new Date(bookingDetails.dropoffdate);
+    if (
+      dayjs(currentDate).isBefore(dayjs(pickupDate)) ||
+      dayjs(currentDate).isAfter(dayjs(dropoffDate))
+    ) {
+      notifyError("Can not check vehicle out before its pickup date");
+      return;
+    }
+
     try {
       const response = await axios.post(`${url}/checkout`, {
         bookingid: bookingDetails.bookingid,
